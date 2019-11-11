@@ -1,26 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import Circle from "./Components/circle/circle";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component {
+
+  state = {
+    
+  };
+
+    generateNumbers = () => {
+        const numbers = [];
+        for (let i = 0; i < 5; i++) {
+            let number = (Math.floor(Math.random() * 32) + 5);
+            if (numbers.includes(number)){
+                continue;
+            } else {
+                numbers.push(number);
+            }
+        }
+    };
+
+    render() {
+        return (
+            <div className="App">
+                <div className='container'>
+                    <div>
+                        <button onClick={this.generateNumbers}>New numbers</button>
+                    </div>
+                  <Circle number={this.state.numbers[0].number}/>
+                  <Circle number={this.state.numbers[0].number}/>
+                  <Circle number={this.state.numbers[0].number}/>
+                  <Circle number={this.state.numbers[0].number}/>
+                  <Circle number={this.state.numbers[0].number}/>
+                </div>
+            </div>
+        );
+    }
 }
 
 export default App;
