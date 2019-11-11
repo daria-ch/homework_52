@@ -4,20 +4,22 @@ import Circle from "./Components/circle/circle";
 
 class App extends Component {
 
-  state = {
-    
-  };
+    state = {
+        numbers: []
+    };
 
     generateNumbers = () => {
-        const numbers = [];
-        for (let i = 0; i < 5; i++) {
-            let number = (Math.floor(Math.random() * 32) + 5);
-            if (numbers.includes(number)){
-                continue;
-            } else {
-                numbers.push(number);
-            }
+       const randomNumbers = [];
+        while (randomNumbers.length < 5) {
+          let number = Math.floor(Math.random()*32 + 5);
+          if (randomNumbers.indexOf(number) === -1) {
+            randomNumbers.push(number);
+          };
         }
+        const numbers = randomNumbers.sort(function(a, b) {
+          return a - b;
+        });
+      this.setState({numbers});
     };
 
     render() {
@@ -27,11 +29,11 @@ class App extends Component {
                     <div>
                         <button onClick={this.generateNumbers}>New numbers</button>
                     </div>
-                  <Circle number={this.state.numbers[0].number}/>
-                  <Circle number={this.state.numbers[0].number}/>
-                  <Circle number={this.state.numbers[0].number}/>
-                  <Circle number={this.state.numbers[0].number}/>
-                  <Circle number={this.state.numbers[0].number}/>
+                    <Circle number={this.state.numbers[0]}/>
+                    <Circle number={this.state.numbers[1]}/>
+                    <Circle number={this.state.numbers[2]}/>
+                    <Circle number={this.state.numbers[3]}/>
+                    <Circle number={this.state.numbers[4]}/>
                 </div>
             </div>
         );
